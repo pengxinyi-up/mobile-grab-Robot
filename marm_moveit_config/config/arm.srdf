@@ -1,0 +1,261 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="arm">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="arm">
+        <chain base_link="base_arm" tip_link="grasping_frame" />
+    </group>
+    <group name="gripper">
+        <link name="gripper_finger_link1" />
+        <link name="gripper_finger_link2" />
+        <joint name="finger_joint1" />
+        <joint name="finger_joint2" />
+    </group>
+    <!--GROUP STATES: Purpose: Define a named state for a particular group, in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="up" group="arm">
+        <joint name="joint1" value="0" />
+        <joint name="joint2" value="0" />
+        <joint name="joint3" value="0" />
+        <joint name="joint4" value="0" />
+        <joint name="joint5" value="0" />
+        <joint name="joint6" value="0" />
+    </group_state>
+    <group_state name="init" group="arm">
+        <joint name="joint1" value="0" />
+        <joint name="joint2" value="1.7296" />
+        <joint name="joint3" value="1.4472" />
+        <joint name="joint4" value="0" />
+        <joint name="joint5" value="1.6237" />
+        <joint name="joint6" value="0" />
+    </group_state>
+    <group_state name="open" group="gripper">
+        <joint name="finger_joint1" value="0" />
+    </group_state>
+    <group_state name="close" group="gripper">
+        <joint name="finger_joint1" value="0.1" />
+    </group_state>
+    <group_state name="start" group="arm">
+        <joint name="joint1" value="0.7766" />
+        <joint name="joint2" value="1.5884" />
+        <joint name="joint3" value="1.5531" />
+        <joint name="joint4" value="2.3297" />
+        <joint name="joint5" value="-2.0473" />
+        <joint name="joint6" value="-0.706" />
+    </group_state>
+    <group_state name="arm1" group="arm">
+        <joint name="joint1" value="0" />
+        <joint name="joint2" value="0.6001" />
+        <joint name="joint3" value="0.9883" />
+        <joint name="joint4" value="0" />
+        <joint name="joint5" value="0" />
+        <joint name="joint6" value="0" />
+    </group_state>
+    <group_state name="arm2" group="arm">
+        <joint name="joint1" value="0" />
+        <joint name="joint2" value="0.3883" />
+        <joint name="joint3" value="1.3766" />
+        <joint name="joint4" value="-0.018" />
+        <joint name="joint5" value="0.2118" />
+        <joint name="joint6" value="0" />
+    </group_state>
+    <group_state name="close1" group="gripper">
+        <joint name="finger_joint1" value="0.0596" />
+    </group_state>
+    <group_state name="close2" group="gripper">
+        <joint name="finger_joint1" value="0.0416" />
+    </group_state>
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="robot_gripper" parent_link="grasping_frame" group="gripper" />
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="L1_link" link2="L_link" reason="Never" />
+    <disable_collisions link1="L1_link" link2="R1_link" reason="Never" />
+    <disable_collisions link1="L1_link" link2="R_link" reason="Never" />
+    <disable_collisions link1="L1_link" link2="back_caster_link" reason="Never" />
+    <disable_collisions link1="L1_link" link2="base_arm" reason="Never" />
+    <disable_collisions link1="L1_link" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="L1_link" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="L1_link" link2="front_caster_link" reason="Never" />
+    <disable_collisions link1="L1_link" link2="kinect_link" reason="Never" />
+    <disable_collisions link1="L1_link" link2="layer0_link" reason="Default" />
+    <disable_collisions link1="L1_link" link2="layer1_link" reason="Default" />
+    <disable_collisions link1="L1_link" link2="layer2_link" reason="Default" />
+    <disable_collisions link1="L1_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="L1_link" link2="link0" reason="Never" />
+    <disable_collisions link1="L1_link" link2="link1" reason="Never" />
+    <disable_collisions link1="L1_link" link2="link2" reason="Never" />
+    <disable_collisions link1="L1_link" link2="link3" reason="Never" />
+    <disable_collisions link1="L1_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="L_link" link2="R1_link" reason="Never" />
+    <disable_collisions link1="L_link" link2="R_link" reason="Never" />
+    <disable_collisions link1="L_link" link2="back_caster_link" reason="Never" />
+    <disable_collisions link1="L_link" link2="base_arm" reason="Never" />
+    <disable_collisions link1="L_link" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="L_link" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="L_link" link2="front_caster_link" reason="Never" />
+    <disable_collisions link1="L_link" link2="kinect_link" reason="Default" />
+    <disable_collisions link1="L_link" link2="layer0_link" reason="Never" />
+    <disable_collisions link1="L_link" link2="layer1_link" reason="Default" />
+    <disable_collisions link1="L_link" link2="layer2_link" reason="Never" />
+    <disable_collisions link1="L_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="L_link" link2="link0" reason="Never" />
+    <disable_collisions link1="L_link" link2="link1" reason="Never" />
+    <disable_collisions link1="L_link" link2="link2" reason="Never" />
+    <disable_collisions link1="L_link" link2="link3" reason="Never" />
+    <disable_collisions link1="L_link" link2="link4" reason="Never" />
+    <disable_collisions link1="L_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="R1_link" link2="R_link" reason="Never" />
+    <disable_collisions link1="R1_link" link2="back_caster_link" reason="Never" />
+    <disable_collisions link1="R1_link" link2="base_arm" reason="Never" />
+    <disable_collisions link1="R1_link" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="R1_link" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="R1_link" link2="front_caster_link" reason="Never" />
+    <disable_collisions link1="R1_link" link2="kinect_link" reason="Never" />
+    <disable_collisions link1="R1_link" link2="layer0_link" reason="Default" />
+    <disable_collisions link1="R1_link" link2="layer1_link" reason="Default" />
+    <disable_collisions link1="R1_link" link2="layer2_link" reason="Default" />
+    <disable_collisions link1="R1_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="R1_link" link2="link0" reason="Never" />
+    <disable_collisions link1="R1_link" link2="link1" reason="Never" />
+    <disable_collisions link1="R1_link" link2="link2" reason="Never" />
+    <disable_collisions link1="R1_link" link2="link3" reason="Never" />
+    <disable_collisions link1="R1_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="R_link" link2="back_caster_link" reason="Never" />
+    <disable_collisions link1="R_link" link2="base_arm" reason="Never" />
+    <disable_collisions link1="R_link" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="R_link" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="R_link" link2="front_caster_link" reason="Never" />
+    <disable_collisions link1="R_link" link2="kinect_link" reason="Default" />
+    <disable_collisions link1="R_link" link2="layer0_link" reason="Never" />
+    <disable_collisions link1="R_link" link2="layer1_link" reason="Default" />
+    <disable_collisions link1="R_link" link2="layer2_link" reason="Never" />
+    <disable_collisions link1="R_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="R_link" link2="link0" reason="Never" />
+    <disable_collisions link1="R_link" link2="link1" reason="Never" />
+    <disable_collisions link1="R_link" link2="link2" reason="Never" />
+    <disable_collisions link1="R_link" link2="link3" reason="Never" />
+    <disable_collisions link1="R_link" link2="link4" reason="Never" />
+    <disable_collisions link1="R_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="base_arm" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="back_caster_link" link2="front_caster_link" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="kinect_link" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="layer0_link" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="layer1_link" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="layer2_link" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="link0" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="link1" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="link2" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="link3" reason="Never" />
+    <disable_collisions link1="back_caster_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="base_arm" link2="base_footprint" reason="Never" />
+    <disable_collisions link1="base_arm" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="base_arm" link2="front_caster_link" reason="Never" />
+    <disable_collisions link1="base_arm" link2="kinect_link" reason="Never" />
+    <disable_collisions link1="base_arm" link2="layer0_link" reason="Default" />
+    <disable_collisions link1="base_arm" link2="layer1_link" reason="Never" />
+    <disable_collisions link1="base_arm" link2="layer2_link" reason="Never" />
+    <disable_collisions link1="base_arm" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="base_arm" link2="link0" reason="Adjacent" />
+    <disable_collisions link1="base_arm" link2="link1" reason="Never" />
+    <disable_collisions link1="base_arm" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="base_link" reason="Adjacent" />
+    <disable_collisions link1="base_footprint" link2="front_caster_link" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="gripper_finger_link2" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="kinect_link" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="layer0_link" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="layer1_link" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="layer2_link" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="link0" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="link1" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="link2" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="link3" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="link4" reason="Never" />
+    <disable_collisions link1="base_footprint" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="base_link" link2="front_caster_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="kinect_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="layer0_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="layer1_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="layer2_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="left_wheel_link" reason="Adjacent" />
+    <disable_collisions link1="base_link" link2="link0" reason="Never" />
+    <disable_collisions link1="base_link" link2="link1" reason="Never" />
+    <disable_collisions link1="base_link" link2="link2" reason="Never" />
+    <disable_collisions link1="base_link" link2="right_wheel_link" reason="Adjacent" />
+    <disable_collisions link1="front_caster_link" link2="gripper_finger_link1" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="gripper_finger_link2" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="kinect_link" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="layer0_link" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="layer1_link" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="layer2_link" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="link0" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="link1" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="link2" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="link3" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="link4" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="link5" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="link6" reason="Never" />
+    <disable_collisions link1="front_caster_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="gripper_finger_link1" link2="gripper_finger_link2" reason="Never" />
+    <disable_collisions link1="gripper_finger_link1" link2="link4" reason="Never" />
+    <disable_collisions link1="gripper_finger_link1" link2="link5" reason="Never" />
+    <disable_collisions link1="gripper_finger_link1" link2="link6" reason="Adjacent" />
+    <disable_collisions link1="gripper_finger_link2" link2="link4" reason="Never" />
+    <disable_collisions link1="gripper_finger_link2" link2="link5" reason="Never" />
+    <disable_collisions link1="gripper_finger_link2" link2="link6" reason="Adjacent" />
+    <disable_collisions link1="kinect_link" link2="layer0_link" reason="Never" />
+    <disable_collisions link1="kinect_link" link2="layer1_link" reason="Never" />
+    <disable_collisions link1="kinect_link" link2="layer2_link" reason="Never" />
+    <disable_collisions link1="kinect_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="kinect_link" link2="link0" reason="Never" />
+    <disable_collisions link1="kinect_link" link2="link1" reason="Never" />
+    <disable_collisions link1="kinect_link" link2="link2" reason="Never" />
+    <disable_collisions link1="kinect_link" link2="link3" reason="Never" />
+    <disable_collisions link1="kinect_link" link2="link4" reason="Never" />
+    <disable_collisions link1="kinect_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="layer0_link" link2="layer1_link" reason="Never" />
+    <disable_collisions link1="layer0_link" link2="layer2_link" reason="Never" />
+    <disable_collisions link1="layer0_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="layer0_link" link2="link0" reason="Default" />
+    <disable_collisions link1="layer0_link" link2="link1" reason="Never" />
+    <disable_collisions link1="layer0_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="layer1_link" link2="layer2_link" reason="Never" />
+    <disable_collisions link1="layer1_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="layer1_link" link2="link0" reason="Never" />
+    <disable_collisions link1="layer1_link" link2="link1" reason="Never" />
+    <disable_collisions link1="layer1_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="layer2_link" link2="left_wheel_link" reason="Never" />
+    <disable_collisions link1="layer2_link" link2="link0" reason="Never" />
+    <disable_collisions link1="layer2_link" link2="link1" reason="Never" />
+    <disable_collisions link1="layer2_link" link2="link2" reason="Never" />
+    <disable_collisions link1="layer2_link" link2="link3" reason="Never" />
+    <disable_collisions link1="layer2_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="left_wheel_link" link2="link0" reason="Never" />
+    <disable_collisions link1="left_wheel_link" link2="link1" reason="Never" />
+    <disable_collisions link1="left_wheel_link" link2="link2" reason="Never" />
+    <disable_collisions link1="left_wheel_link" link2="link3" reason="Never" />
+    <disable_collisions link1="left_wheel_link" link2="link4" reason="Never" />
+    <disable_collisions link1="left_wheel_link" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="link0" link2="link1" reason="Adjacent" />
+    <disable_collisions link1="link0" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="link1" link2="link2" reason="Adjacent" />
+    <disable_collisions link1="link1" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="link2" link2="link3" reason="Adjacent" />
+    <disable_collisions link1="link2" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="link3" link2="link4" reason="Adjacent" />
+    <disable_collisions link1="link3" link2="link5" reason="Never" />
+    <disable_collisions link1="link3" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="link4" link2="link5" reason="Adjacent" />
+    <disable_collisions link1="link4" link2="right_wheel_link" reason="Never" />
+    <disable_collisions link1="link5" link2="link6" reason="Adjacent" />
+</robot>

@@ -1,0 +1,23 @@
+<launch>
+  
+    <!-- Launch Gazebo  -->
+    <include file="$(find mbot_gazebo)/launch/mbot_with_arm_world.launch" />
+
+    <!-- ros_control arm launch file -->
+    <include file="$(find mbot_gazebo)/launch/arm_gazebo_states.launch" />   
+
+    <!-- ros_control trajectory control dof arm launch file -->
+    <include file="$(find mbot_gazebo)/launch/arm_trajectory_controller.launch" />
+
+    <!-- moveit launch file -->
+    <include file="$(find marm_moveit_config)/launch/moveit_planning_execution.launch" />
+
+    <!-- 运行depthimage_to_laserscan节点，将点云深度数转换成激光数据 -->
+    <node pkg="depthimage_to_laserscan" type="depthimage_to_laserscan" name="depthimage_to_laserscan" output="screen">
+        <remap from="image" to="/kinect/depth/image_raw" />
+        <remap from="camera_info" to="/kinect/depth/camera_info" />
+        <remap from="scan" to="/scan" />
+        <param name="output_frame_id" value="/kinect_link" />
+    </node>
+
+</launch>

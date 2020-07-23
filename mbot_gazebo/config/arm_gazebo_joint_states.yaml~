@@ -1,0 +1,6 @@
+arm:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: JointStateController
+    publish_rate: 50  
+  

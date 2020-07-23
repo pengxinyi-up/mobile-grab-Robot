@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: mbot_description
+    relative_path: urdf/xacro/mbot_with_kinect.xacro
+  SRDF:
+    relative_path: config/arm.srdf
+  CONFIG:
+    author_name: pxy
+    author_email: pengxinyi_up@163.com
+    generated_timestamp: 1585219943

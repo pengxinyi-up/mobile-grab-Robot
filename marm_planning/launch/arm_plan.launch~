@@ -1,0 +1,6 @@
+<launch>
+
+<node pkg="marm_planning" name="marm_planning" type="moveit_ik_demo.py" output="screen">
+</node>
+
+</launch>

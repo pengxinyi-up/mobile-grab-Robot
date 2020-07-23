@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot name="arm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find marm_description)/urdf/arm_base.xacro" />
+    <xacro:include filename="$(find marm_description)/urdf/kinect_gazebo.xacro" />
+
+
+    <xacro:property name="deg_to_rad" value="0.01745329251994329577"/>
+
+    <link name="bottom_link">
+        <visual>
+			<origin xyz=" 0 0 0.02"  rpy="0 0 0"/>
+			    <geometry>
+				   <box size="1 1 0.02" />
+			    </geometry>
+			<material name="Black" />
+        </visual>
+        <collision>
+            <origin xyz=" 0 0 0.02"  rpy="0 0 0"/>
+            <geometry>
+                <box size="1 1 0.02" />
+            </geometry>
+        </collision>
+        <box_inertial_matrix m="1000" w="1" h="0.02" d="1"/>
+    </link>
+
+    <arm_base parent="bottom_link" xyz="0 0 0.02" rpy="0 0 0"/>
+
+    <!-- kinect -->
+    <joint name="kinect_joint" type="fixed">
+        <origin xyz="0.1 0 0.8" rpy="0 ${75.0 * deg_to_rad} 0" />
+        <parent link="base_link"/>
+        <child link="kinect_link"/>
+    </joint>
+
+    <xacro:kinect_camera prefix="kinect"/>
+
+</robot>

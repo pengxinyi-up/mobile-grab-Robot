@@ -1,0 +1,25 @@
+<launch>
+	<arg name="model" default="$(find xacro)/xacro --inorder '$(find mbot_description)/urdf/xacro_gazebo/mbot_with_kinect_gazebo.xacro'" />
+	<arg name="gui" default="false" />
+
+	<param name="robot_description" command="$(arg model)" />
+
+    <!-- 设置GUI参数，显示关节控制插件 -->
+	<param name="use_gui" value="$(arg gui)"/>
+
+	<node name="arbotix" pkg="arbotix_python" type="arbotix_driver" output="screen">
+        <rosparam file="$(find mbot_description)/config/fake_mbot_arbotix.yaml" command="load" />
+        <param name="sim" value="true"/>
+    </node>
+
+    <!-- 运行joint_state_publisher节点，发布机器人的关节状态  -->
+	<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+	<!-- 运行robot_state_publisher节点，发布tf  -->
+	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+    <!-- 运行rviz可视化界面 -->
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find mbot_description)/config/mbot_arbotix.rviz" required="true" />
+
+</launch>
+
