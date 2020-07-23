@@ -1,7 +1,12 @@
 # mobile-grab-Robot
 Simulation design and Realization of face recognition, voice control, autonomous movement, recognition and grasping robot based on ROS
 
-![system_structure](https://github.com/pengxinyi-up/mobile-grab-Robot/tree/master/photos/system_structure.png) 
+### [详细内容，点此链接可以去我的CSDN博客!](https://blog.csdn.net/qq_37372155/category_9650566.html) 
+
+
+![system_structure](https://raw.githubusercontent.com/pengxinyi-up/mobile-grab-Robot/master/photos/system_structure.png "系统结构") 
+![simulation_model](https://raw.githubusercontent.com/pengxinyi-up/mobile-grab-Robot/master/photos/simulation_model.png "仿真模型") 
+![hardware_system](https://raw.githubusercontent.com/pengxinyi-up/mobile-grab-Robot/master/photos/hardware_system.png "硬件系统") 
 
 ## 人脸识别：
 1,启动usb摄像头
