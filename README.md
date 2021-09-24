@@ -1,5 +1,7 @@
 # mobile-grab-Robot
 * Simulation design and Realization of face recognition, voice control, autonomous movement, recognition and grasping robot based on ROS
+* Thanks for the great work: [ORB-SLAM2!](https://github.com/introlab/find-object), [Cube SLAM!](https://github.com/procrob/face_recognition)
+* video:[bilibili!](https://www.bilibili.com/video/BV1WK4y147Rw?spm_id_from=333.999.0.0)
 
 ### [详细内容，点此链接可以去我的`CSDN博客`!](https://blog.csdn.net/qq_37372155/category_9650566.html) 
 
@@ -7,6 +9,16 @@
 ![system_structure](https://raw.githubusercontent.com/pengxinyi-up/mobile-grab-Robot/master/photos/system_structure.png "系统结构") 
 ![simulation_model](https://raw.githubusercontent.com/pengxinyi-up/mobile-grab-Robot/master/photos/simulation_model.png "仿真模型") 
 ![hardware_system](https://raw.githubusercontent.com/pengxinyi-up/mobile-grab-Robot/master/photos/hardware_system.png "硬件系统") 
+
+## Instalation
+This instalation process is for catkin (ROS Indigo or newer version) Assuming that your catkin workspace is under ~/catkin_ws, if not replace ~/catkin_ws with appropriate location. 
+```bash
+cd ~/catkin_ws/src
+git clone https://github.com/pengxinyi-up/mobile-grab-Robot
+cd ~/catkin_ws
+catkin_make
+```
+
 
 ## 人脸识别：
 1、启动usb摄像头
@@ -87,6 +99,8 @@ python ~/ws_control/src/marm_planning/scripts/moveit_ik_demo.py
 rqt_plot /joint_states/position[0]:position[1]:position[2]:position[3]:position[4]:position[5]:position[6]
 ```
 
+## Contact
+[Xinyi Peng!](https://pxy.netlify.app/), Email: pengxinyi_up@163.com
 
 
 
