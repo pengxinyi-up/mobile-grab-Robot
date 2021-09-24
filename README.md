@@ -1,7 +1,7 @@
 # mobile-grab-Robot
 * Simulation design and Realization of face recognition, voice control, autonomous movement, recognition and grasping robot based on ROS
-* Thanks for the great work: [ORB-SLAM2!](https://github.com/introlab/find-object), [Cube SLAM!](https://github.com/procrob/face_recognition)
-* video:[bilibili!](https://www.bilibili.com/video/BV1WK4y147Rw?spm_id_from=333.999.0.0)
+* Thanks for the great work: [ORB-SLAM2](https://github.com/introlab/find-object), [Cube SLAM](https://github.com/procrob/face_recognition)and[古月居](https://www.guyuehome.com/)
+* Video:[Bilibili](https://www.bilibili.com/video/BV1WK4y147Rw?spm_id_from=333.999.0.0)
 
 ### [详细内容，点此链接可以去我的`CSDN博客`!](https://blog.csdn.net/qq_37372155/category_9650566.html) 
 
@@ -100,7 +100,7 @@ rqt_plot /joint_states/position[0]:position[1]:position[2]:position[3]:position[
 ```
 
 ## Contact
-[Xinyi Peng!](https://pxy.netlify.app/), Email: pengxinyi_up@163.com
+[Xinyi Peng](https://pxy.netlify.app/), Email: pengxinyi_up@163.com
 
 
 
